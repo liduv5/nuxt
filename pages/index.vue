@@ -104,7 +104,6 @@ export default {
   computed: {
     ...mapState({ userInfo: state => state.userInfo })
   },
-
   watch: {
     $route(to, from) {
       let arr = []
@@ -121,7 +120,7 @@ export default {
       })
     }
   },
-  created() {
+  mounted() {
     let arr = []
     if (this.$route.path === '/') {
       arr = ['']
