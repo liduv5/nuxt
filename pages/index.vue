@@ -97,7 +97,7 @@ export default {
       { name: 'roleAdd', title: '添加角色', path: '/users/roleAdd' },
       { name: 'roleEdit', title: '编辑角色信息', path: '/users/roleEdit' },
       { name: 'access', title: '权限配置', path: '/users/access' },
-      { name: 'acessAdd', title: '添加权限', path: '/users/acessAdd' },
+      { name: 'accessAdd', title: '添加权限', path: '/users/accessAdd' },
       { name: 'accessEdit', title: '编辑权限信息', path: '/users/accessEdit' }
     ]
   }),
