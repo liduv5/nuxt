@@ -1,6 +1,6 @@
 # liduv5
 
-> This is a blog management system (nuxt+egg)
+> This is a egg+nuxt blog management system
 
 ## Build Setup
 
