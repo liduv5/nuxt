@@ -17,9 +17,6 @@
           <el-form-item label="模块名" prop="module_name">
             <el-input v-model="ruleForm.module_name" type="text" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="操作名" prop="action_name">
-            <el-input v-model="ruleForm.action_name" type="text" auto-complete="off"></el-input>
-          </el-form-item>
           <el-form-item label="类型">
             <el-select v-model="ruleForm.type" placeholder="请选择">
               <el-option
@@ -29,6 +26,9 @@
                 :value="item.type">
               </el-option>
             </el-select>
+          </el-form-item>
+          <el-form-item label="操作名" prop="action_name">
+            <el-input v-model="ruleForm.action_name" type="text" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="操作路径" prop="url">
             <el-input v-model="ruleForm.url" type="text" auto-complete="off"></el-input>
