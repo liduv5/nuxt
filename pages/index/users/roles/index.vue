@@ -27,11 +27,11 @@ export default {
   },
   methods: {
     add() {
-      this.$router.push({ path: '/users/roleAdd' })
+      this.$router.push({ path: '/users/roles/roleAdd' })
     },
     handleEdit(index, row) {
       this.$router.push({
-        path: '/users/roleEdit',
+        path: '/users/roles/roleEdit',
         query: { _id: row._id }
       })
     },

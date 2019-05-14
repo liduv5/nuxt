@@ -62,11 +62,11 @@ export default {
   },
   methods: {
     add() {
-      this.$router.push({ path: '/users/accessAdd' })
+      this.$router.push({ path: '/users/access/accessAdd' })
     },
     handleEdit(index, row) {
       this.$router.push({
-        path: '/users/accessEdit',
+        path: '/users/access/accessEdit',
         query: { _id: row._id }
       })
     },

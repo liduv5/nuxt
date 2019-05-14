@@ -110,6 +110,7 @@ export default {
         arr = ['']
       } else {
         arr = to.path.split('/').filter(item => item)
+        // console.log(arr.pop())
       }
       this.breadcrumbList = []
       arr.forEach((value, index, array) => {
