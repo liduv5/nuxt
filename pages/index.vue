@@ -93,11 +93,11 @@ export default {
       { name: 'userAdd', title: '添加用户', path: '/users/userAdd' },
       { name: 'userEdit', title: '编辑用户信息', path: '/users/userEdit' },
       { name: 'roles', title: '角色管理', path: '/users/roles' },
-      { name: 'roleAdd', title: '添加角色', path: '/users/roleAdd' },
-      { name: 'roleEdit', title: '编辑角色信息', path: '/users/roleEdit' },
+      { name: 'roleAdd', title: '添加角色', path: '/users/roles/roleAdd' },
+      { name: 'roleEdit', title: '编辑角色信息', path: '/users/roles/roleEdit' },
       { name: 'access', title: '权限配置', path: '/users/access' },
-      { name: 'accessAdd', title: '添加权限', path: '/users/accessAdd' },
-      { name: 'accessEdit', title: '编辑权限信息', path: '/users/accessEdit' }
+      { name: 'accessAdd', title: '添加权限', path: '/users/access/accessAdd' },
+      { name: 'accessEdit', title: '编辑权限信息', path: '/users/access/accessEdit' }
     ]
   }),
   computed: {
@@ -121,6 +121,7 @@ export default {
     }
   },
   created() {
+    console.log(this.$route.path)
     let arr = []
     if (this.$route.path === '/') {
       arr = ['']
