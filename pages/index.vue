@@ -87,7 +87,6 @@ const Cookie = process.client ? require('js-cookie') : undefined
 export default {
   middleware: 'authenticated',
   data: () => ({
-    breadcrumbList: [],
     menu: [
       { name: '', title: '系统首页', path: '/' },
       { name: 'users', title: '用户管理', path: '/users' },
@@ -106,7 +105,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      let arr = []
+      let arr = ['']
       if (to.path === '/') {
         arr = ['']
       } else {
@@ -120,7 +119,7 @@ export default {
       })
     }
   },
-  mounted() {
+  created() {
     let arr = []
     if (this.$route.path === '/') {
       arr = ['']

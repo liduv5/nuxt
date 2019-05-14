@@ -22,6 +22,7 @@ module.exports = {
     'prettier/prettier': 'off',
     'no-console': 'off',
     'prefer-const': 'off',
-    'no-lonely-if':'off'
+    'no-lonely-if':'off',
+    "camelcase": 'off'
   }
 }
