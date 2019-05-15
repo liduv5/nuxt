@@ -1,14 +1,14 @@
 <template>
   <div class="access">
     <el-button type="primary" icon="el-icon-plus" style="margin: 10px auto;" @click="add">添加权限</el-button>
-    <el-table :data="accessList" stripe border style="width: 100%">
+    <el-table :data="accessList" row-key="_id" stripe border style="width: 100%">
       <!-- <el-table-column prop="_id" label="id编号" align="center" min-width="200"></el-table-column> -->
-      <el-table-column prop="module_name" label="模块名" align="center" min-width="100"></el-table-column>
+      <el-table-column prop="module_name" label="模块名" align="center" min-width="150"></el-table-column>
       <el-table-column prop="action_name" label="操作名" align="center" min-width="100"></el-table-column>
-      <el-table-column prop="type" label="类型" align="center" min-width="50"></el-table-column>
+      <el-table-column prop="type" label="类型" :formatter="formatType" align="center" min-width="50"></el-table-column>
       <el-table-column prop="url" label="操作路径" align="center" min-width="120"></el-table-column>
       <el-table-column prop="module_id" label="模块ID" align="center" min-width="150"></el-table-column>
-      <el-table-column prop="sort" label="排序" align="center" min-width="120"></el-table-column>
+      <el-table-column prop="sort" label="排序" align="center" min-width="80"></el-table-column>
       <el-table-column prop="description" label="描述" align="center" min-width="120"></el-table-column>
       <el-table-column prop="status" label="状态" align="center" min-width="50"></el-table-column>
       <el-table-column label="操作" align="center" min-width="200">
@@ -99,6 +99,10 @@ export default {
             message: '已取消删除'
           })
         })
+    },
+    // 表格中tpye属性值格式化
+    formatType(row, column) {
+      return row.type === 1 ? '模块' : row.type === 2 ? '菜单' : '操作'
     }
   }
 }

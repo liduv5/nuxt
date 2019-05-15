@@ -121,7 +121,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.path)
     let arr = []
     if (this.$route.path === '/') {
       arr = ['']
