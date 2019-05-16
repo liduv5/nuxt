@@ -8,6 +8,7 @@
       <el-table-column prop="add_time" label="创建时间" align="center" min-width="180"></el-table-column>
       <el-table-column label="操作" align="center" min-width="200">
         <template slot-scope="scope">
+          <el-button size="mini" @click="handleAuth(scope.$index, scope.row)">授权</el-button>
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
@@ -28,6 +29,12 @@ export default {
   methods: {
     add() {
       this.$router.push({ path: '/users/roles/roleAdd' })
+    },
+    handleAuth(index, row) {
+      this.$router.push({
+        path: '/users/roles/auth',
+        query: { _id: row._id }
+      })
     },
     handleEdit(index, row) {
       this.$router.push({
