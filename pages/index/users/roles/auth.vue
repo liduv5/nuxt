@@ -50,27 +50,32 @@ export default {
     getCheckedKeys() {
       let sumKey = this.$refs.tree.getCheckedKeys()
       let fKey = this.$refs.tree.getHalfCheckedKeys()
-      let accessId = sumKey.concat(fKey)
+      let accessId = fKey.concat(sumKey)
       let role_id = this.$route.query._id
       let arr = { access_id: accessId, role_id }
-      this.$axios.$post('/api/roles/auth', arr).then(res => {
-        if (res.success) {
-          this.$message({
-            message: '角色授权成功！',
-            type: 'success'
-          })
-          this.$router.push('/users/roles')
-        } else {
-          this.$message.error('角色添加失败！')
-        }
-      })
+      if (JSON.stringify(accessId) === JSON.stringify(this.authArr)) {
+        this.$message.warning('您还未做任何更改，请勿提交！')
+      } else {
+        this.$axios.$post('/api/roles/auth', arr).then(res => {
+          if (res.success) {
+            this.$message({
+              message: '角色授权成功！',
+              type: 'success'
+            })
+            this.$router.push('/users/roles')
+          } else {
+            this.$message.error('角色添加失败！')
+          }
+        })
+      }
     },
     async setCheckedKeys() {
-      let authList = await this.$axios.$post('/api/roles/getAuth',{ role_id:this.$route.query._id })
-      // console.log(authList)
+      let authList = await this.$axios.$post('/api/roles/getAuth', {
+        role_id: this.$route.query._id
+      })
       this.authArr = []
       authList.forEach(element => {
-       this.authArr.push(element.access_id)
+        this.authArr.push(element.access_id)
       })
       this.$refs.tree.setCheckedKeys(this.authArr)
     }
