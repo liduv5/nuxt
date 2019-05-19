@@ -83,7 +83,7 @@ export default {
    * 获取角色列表赋给select组件
    */
   asyncData({ $axios }) {
-    return $axios.$get('/api/roles').then(res => {
+    return $axios.$get('/api/users/roles').then(res => {
       return { roleList: res }
     })
   },
@@ -92,7 +92,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.$axios
-            .$post('/api/users', this.ruleForm)
+            .$post('/api/users/addUser', this.ruleForm)
             .then(res => {
               if (res.success) {
                 this.$message({

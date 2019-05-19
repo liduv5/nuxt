@@ -36,7 +36,7 @@ export default {
     }
   },
   async asyncData({ $axios }) {
-    let accessList = await $axios.$get('/api/access')
+    let accessList = await $axios.$get('/api/users/access')
     return { accessList }
   },
   mounted() {
@@ -56,7 +56,7 @@ export default {
       if (JSON.stringify(accessId) === JSON.stringify(this.authArr)) {
         this.$message.warning('您还未做任何更改，请勿提交！')
       } else {
-        this.$axios.$post('/api/roles/auth', arr).then(res => {
+        this.$axios.$post('/api/users/roles/auth', arr).then(res => {
           if (res.success) {
             this.$message({
               message: '角色授权成功！',
@@ -70,7 +70,7 @@ export default {
       }
     },
     async setCheckedKeys() {
-      let authList = await this.$axios.$post('/api/roles/getAuth', {
+      let authList = await this.$axios.$post('/api/users/roles/getAuth', {
         role_id: this.$route.query._id
       })
       this.authArr = []

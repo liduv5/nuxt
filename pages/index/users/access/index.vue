@@ -57,16 +57,16 @@ export default {
     ]
   }),
   async asyncData({ $axios }) {
-    let accessList = await $axios.$get('/api/access')
+    let accessList = await $axios.$get('/api/users/access')
     return { accessList }
   },
   methods: {
     add() {
-      this.$router.push({ path: '/users/access/accessAdd' })
+      this.$router.push({ path: '/users/access/addAccess' })
     },
     handleEdit(index, row) {
       this.$router.push({
-        path: '/users/access/accessEdit',
+        path: '/users/access/updateAccess',
         query: { _id: row._id }
       })
     },
@@ -81,7 +81,7 @@ export default {
         }
       )
         .then(() => {
-          this.$axios.$delete(`/api/access/${row._id}`).then(res => {
+          this.$axios.$delete(`/api/users/access/deleteAccess/${row._id}`).then(res => {
             if (res.ok) {
               this.$message({
                 type: 'success',

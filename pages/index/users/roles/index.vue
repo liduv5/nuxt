@@ -22,13 +22,13 @@ export default {
     roleList: []
   }),
   asyncData({ $axios }) {
-    return $axios.$get('/api/roles').then(res => {
+    return $axios.$get('/api/users/roles').then(res => {
       return { roleList: res }
     })
   },
   methods: {
     add() {
-      this.$router.push({ path: '/users/roles/roleAdd' })
+      this.$router.push({ path: '/users/roles/addRole' })
     },
     handleAuth(index, row) {
       this.$router.push({
@@ -38,7 +38,7 @@ export default {
     },
     handleEdit(index, row) {
       this.$router.push({
-        path: '/users/roles/roleEdit',
+        path: '/users/roles/updateRole',
         query: { _id: row._id }
       })
     },
@@ -49,7 +49,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          this.$axios.$delete(`/api/roles/${row._id}`).then(res => {
+          this.$axios.$delete(`/api/users/roles/deleteRole/${row._id}`).then(res => {
             if (res.ok) {
               this.$message({
                 type: 'success',

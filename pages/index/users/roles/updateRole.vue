@@ -1,8 +1,8 @@
 <template>
-  <div class="add">
+  <div class="edit">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>添加角色</span>
+        <span>编辑角色信息</span>
         <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
       </div>
       <div class="text item">
@@ -49,25 +49,35 @@ export default {
       }
     }
   },
+  async asyncData({ $axios, query }) {
+    let roleInfo = await $axios.$post('/api/users/roles/findOne', query)
+    let defauleRoleInfo = JSON.stringify(roleInfo, ['title', 'description'])
+    return { ruleForm: JSON.parse(defauleRoleInfo), defauleRoleInfo }
+  },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$axios.$post('/api/roles', this.ruleForm).then(res => {
-            if (res.success) {
+          /* 判断是否为无改动提交 */
+          if (JSON.stringify(this.ruleForm) === this.defauleRoleInfo) {
+            this.$message.warning('您还未做任何更改，请勿提交！')
+          } else {
+            let req = {
+              id: this.$route.query._id,
+              data: this.ruleForm
+            }
+            this.$axios.$put('/api/users/roles', req).then(res => {
+              if (res.ok) {
                 this.$message({
-                  message: '角色添加成功！',
+                  message: '角色信息更新成功！',
                   type: 'success'
                 })
                 this.$router.push('/users/roles')
               } else {
-                if (res.code === 11000) {
-                  this.$message.error('该角色名已存在！')
-                } else {
-                  this.$message.error('角色添加失败！')
-                }
+                this.$message.error('角色信息更新失败！')
               }
             })
+          }
         } else {
           console.log('error submit!!')
           return false
@@ -97,7 +107,7 @@ export default {
 .clearfix:after {
   clear: both;
 }
-.add .box-card {
+.edit .box-card {
   width: 520px;
   margin: 0 auto;
 }

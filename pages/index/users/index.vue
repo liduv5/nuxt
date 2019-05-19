@@ -29,11 +29,11 @@ export default {
   },
   methods: {
     add() {
-      this.$router.push({ path: 'users/userAdd' })
+      this.$router.push({ path: '/users/addUser' })
     },
     handleEdit(index, row) {
       this.$router.push({
-        path: 'users/userEdit',
+        path: '/users/updateUser',
         query: { _id: row._id }
       })
     },
@@ -48,7 +48,7 @@ export default {
         }
       )
         .then(() => {
-          this.$axios.$delete(`/api/users/${row._id}`).then(res => {
+          this.$axios.$delete(`/api/users/deleteUser/${row._id}`).then(res => {
             if (res.ok) {
               this.$message({
                 type: 'success',

@@ -90,15 +90,15 @@ export default {
     menu: [
       { name: '', title: '系统首页', path: '/' },
       { name: 'users', title: '用户管理', path: '/users' },
-      { name: 'userAdd', title: '添加用户', path: '/users/userAdd' },
-      { name: 'userEdit', title: '编辑用户信息', path: '/users/userEdit' },
+      { name: 'addUser', title: '添加用户', path: '/users/addUser' },
+      { name: 'updateUser', title: '编辑用户信息', path: '/users/updateUser' },
       { name: 'roles', title: '角色管理', path: '/users/roles' },
       { name: 'auth', title: '角色授权', path: '/users/roles/auth' },
-      { name: 'roleAdd', title: '添加角色', path: '/users/roles/roleAdd' },
-      { name: 'roleEdit', title: '编辑角色信息', path: '/users/roles/roleEdit' },
+      { name: 'addRole', title: '添加角色', path: '/users/roles/addRole' },
+      { name: 'updateRole', title: '编辑角色信息', path: '/users/roles/updateRole' },
       { name: 'access', title: '权限配置', path: '/users/access' },
-      { name: 'accessAdd', title: '添加权限', path: '/users/access/accessAdd' },
-      { name: 'accessEdit', title: '编辑权限信息', path: '/users/access/accessEdit' }
+      { name: 'addAccess', title: '添加权限', path: '/users/access/addAccess' },
+      { name: 'updateAccess', title: '编辑权限信息', path: '/users/access/updateAccess' }
     ]
   }),
   computed: {

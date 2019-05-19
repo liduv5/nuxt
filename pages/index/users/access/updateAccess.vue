@@ -118,8 +118,8 @@ export default {
    */
   async asyncData({ $axios, query }) {
     let [accessInfo, module_ids] = await Promise.all([
-      $axios.$post('/api/access/findOne', query),
-      $axios.$get('/api/access', { params: { module_id: '0' } })
+      $axios.$post('/api/users/access/findOne', query),
+      $axios.$get('/api/users/access', { params: { module_id: '0' } })
     ])
     let defauleAccessInfo = JSON.stringify(accessInfo, [
       'module_name',
@@ -149,7 +149,7 @@ export default {
               data: this.ruleForm
             }
 
-            this.$axios.$put('/api/access', req).then(res => {
+            this.$axios.$put('/api/users/access/updateAccess', req).then(res => {
               if (res.ok) {
                 this.$message({
                   message: '权限配置更新成功！',

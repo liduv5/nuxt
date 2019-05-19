@@ -111,14 +111,14 @@ export default {
     }
   },
     async asyncData({ $axios }) {
-    let accessList = await $axios.$get('/api/access',{params: {module_id: '0'}})
+    let accessList = await $axios.$get('/api/users/access',{params: {module_id: '0'}})
     return { module_ids:accessList }
   },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$axios.$post('/api/access', this.ruleForm).then(res => {
+          this.$axios.$post('/api/users/access/addAccess', this.ruleForm).then(res => {
             if (res.success) {
                 this.$message({
                   message: '权限添加成功！',

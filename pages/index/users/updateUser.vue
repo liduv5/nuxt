@@ -86,7 +86,7 @@ export default {
   async asyncData({ $axios, query }) {
     let [userInfo, roleList] = await Promise.all([
       $axios.$post('/api/users/findOne', query),
-      $axios.$get('/api/roles')
+      $axios.$get('/api/users/roles')
     ])
     let defauleUserInfo = JSON.stringify(userInfo, [
       'username',
@@ -111,7 +111,7 @@ export default {
               data: this.ruleForm
             }
 
-            this.$axios.$put('/api/users', req).then(res => {
+            this.$axios.$put('/api/users/updateUser', req).then(res => {
               if (res.ok) {
                 this.$message({
                   message: '用户信息更新成功！',
