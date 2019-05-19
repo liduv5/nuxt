@@ -95,10 +95,18 @@ export default {
       { name: 'roles', title: '角色管理', path: '/users/roles' },
       { name: 'auth', title: '角色授权', path: '/users/roles/auth' },
       { name: 'addRole', title: '添加角色', path: '/users/roles/addRole' },
-      { name: 'updateRole', title: '编辑角色信息', path: '/users/roles/updateRole' },
+      {
+        name: 'updateRole',
+        title: '编辑角色信息',
+        path: '/users/roles/updateRole'
+      },
       { name: 'access', title: '权限配置', path: '/users/access' },
       { name: 'addAccess', title: '添加权限', path: '/users/access/addAccess' },
-      { name: 'updateAccess', title: '编辑权限信息', path: '/users/access/updateAccess' }
+      {
+        name: 'updateAccess',
+        title: '编辑权限信息',
+        path: '/users/access/updateAccess'
+      }
     ]
   }),
   computed: {
@@ -142,6 +150,7 @@ export default {
       Cookie.remove('userInfo')
       this.$store.commit('saveUserInfo', {})
       this.$router.push('/login')
+      this.$axios.$post('/api/logout', { nuxtLogout: true })
     }
   }
 }
