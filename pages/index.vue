@@ -40,11 +40,9 @@
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
-              <i class="el-icon-setting"></i>导航三
+              <i class="el-icon-setting"></i>友情链接
             </template>
-            <el-menu-item index="3-1">选项1</el-menu-item>
-            <el-menu-item index="3-2">选项2</el-menu-item>
-            <el-menu-item index="3-3">选项3</el-menu-item>
+            <el-menu-item index="/links">友情链接列表</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -116,6 +114,11 @@ export default {
         name: 'list',
         title: '菜单',
         path: '/article/list'
+      },
+      {
+        name: 'links',
+        title: '友情链接',
+        path: '/links'
       }
     ]
   }),
