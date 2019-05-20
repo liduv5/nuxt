@@ -106,6 +106,16 @@ export default {
         name: 'updateAccess',
         title: '编辑权限信息',
         path: '/users/access/updateAccess'
+      },
+      {
+        name: 'article',
+        title: '文章管理',
+        path: '/article'
+      },
+      {
+        name: 'list',
+        title: '菜单',
+        path: '/article/list'
       }
     ]
   }),
