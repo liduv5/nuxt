@@ -5,46 +5,7 @@
         <div class="top-title">
           <h1 class="title">Nuxt-管理系统</h1>
         </div>
-        <el-menu
-          :default-active="$route.path"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b"
-          router
-        >
-          <el-menu-item index="/">
-            <i class="el-icon-s-home"></i> 系统首页
-          </el-menu-item>
-
-          <el-submenu index="1">
-            <template slot="title">
-              <i class="el-icon-s-custom"></i>用户管理
-            </template>
-            <el-menu-item index="/users">
-              <i class="el-icon-user-solid"></i>用户管理
-            </el-menu-item>
-            <el-menu-item index="/users/roles">
-              <i class="el-icon-user"></i>角色管理
-            </el-menu-item>
-            <el-menu-item index="/users/access">
-              <i class="el-icon-finished"></i>权限配置
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-menu"></i>文章管理
-            </template>
-            <el-menu-item index="/article/list">文章列表</el-menu-item>
-            <el-menu-item index="/article/add">添加文章</el-menu-item>
-            <el-menu-item index="/article/edit">文章编辑</el-menu-item>
-          </el-submenu>
-          <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-setting"></i>友情链接
-            </template>
-            <el-menu-item index="/links">友情链接列表</el-menu-item>
-          </el-submenu>
-        </el-menu>
+        <Menu :menuList="menu" :userInfo="userInfo"></Menu>
       </el-aside>
 
       <el-container>
@@ -80,12 +41,17 @@
 
 <script>
 import { mapState } from 'vuex'
+import Menu from '~/components/Menu.vue'
 const Cookie = process.client ? require('js-cookie') : undefined
 
 export default {
   middleware: 'authenticated',
+  components: {
+    Menu
+  },
   data: () => ({
-    menu: [
+    menu: [],
+    menu1: [
       { name: '', title: '系统首页', path: '/' },
       { name: 'users', title: '用户管理', path: '/users' },
       { name: 'addUser', title: '添加用户', path: '/users/addUser' },
@@ -137,12 +103,13 @@ export default {
       this.breadcrumbList = []
       arr.forEach((value, index, array) => {
         // console.log(`value:${value}    index:${index}     array:${array}`)
-        let newArr = this.menu.find(element => element.name === value)
+        let newArr = this.menu1.find(element => element.name === value)
         this.breadcrumbList.push(newArr)
       })
     }
   },
   created() {
+    this.findmenu()
     let arr = []
     if (this.$route.path === '/') {
       arr = ['']
@@ -151,11 +118,14 @@ export default {
     }
     this.breadcrumbList = []
     arr.forEach((value, index, array) => {
-      let newArr = this.menu.find(element => element.name === value)
+      let newArr = this.menu1.find(element => element.name === value)
       this.breadcrumbList.push(newArr)
     })
   },
   methods: {
+    async findmenu() {
+      this.menu = await this.$axios.$get('/api/menu')
+    },
     logout() {
       // 使外部API上的JWT Cookie无效
       Cookie.remove('auth')

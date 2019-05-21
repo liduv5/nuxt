@@ -47,6 +47,9 @@
           <el-form-item label="排序" prop="sort">
             <el-input v-model="ruleForm.sort" type="text" auto-complete="off"></el-input>
           </el-form-item>
+          <el-form-item label="图标" prop="ico">
+            <el-input v-model="ruleForm.ico" type="text" auto-complete="off"></el-input>
+          </el-form-item>
           <el-form-item label="描述" prop="description">
             <el-input
               v-model="ruleForm.description"
@@ -76,6 +79,7 @@ export default {
         url:'',
         module_id:'0',
         sort:100,
+        ico:'',
         description:''
       },
       types: [{
