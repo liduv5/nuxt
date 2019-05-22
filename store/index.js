@@ -18,7 +18,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit({ dispatch, commit }, { req }) {
+  nuxtServerInit({ dispatch, commit }, { req }) {
     let auth = null
     let userInfo = {}
     if (req.headers.cookie) {
@@ -32,7 +32,6 @@ export const actions = {
     }
     commit('setAuth', auth)
     commit('saveUserInfo', userInfo)
-    await dispatch('GET_ACCESSLIST')
   },
   // 面包屑数据
   async GET_ACCESSLIST({ commit }) {

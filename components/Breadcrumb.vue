@@ -29,12 +29,15 @@ export default {
       this.breadcrumbList = []
       arr.forEach((value, index, array) => {
         // console.log(`value:${value}    index:${index}     array:${array}`)
-        let newArr = this.$store.state.accessList.find(element => element.url.split('/').pop() === value)
-      this.breadcrumbList.push(newArr)
+        let newArr = this.$store.state.accessList.find(
+          element => element.url.split('/').pop() === value
+        )
+        this.breadcrumbList.push(newArr)
       })
     }
   },
-  created() {
+  async created() {
+    await this.accessList()
     let arr = ['']
     if (this.$route.path === '/') {
       arr = ['']
@@ -43,9 +46,16 @@ export default {
     }
     this.breadcrumbList = []
     arr.forEach((value, index, array) => {
-      let newArr = this.$store.state.accessList.find(element => element.url.split('/').pop() === value )
+      let newArr = this.$store.state.accessList.find(
+        element => element.url.split('/').pop() === value
+      )
       this.breadcrumbList.push(newArr)
     })
+  },
+  methods: {
+    async accessList() {
+      await this.$store.dispatch('GET_ACCESSLIST')
+    }
   }
 }
 </script>
