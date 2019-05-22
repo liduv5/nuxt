@@ -35,7 +35,7 @@ export default {
     }
   },
   created() {
-    let arr = []
+    let arr = ['']
     if (this.$route.path === '/') {
       arr = ['']
     } else {

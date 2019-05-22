@@ -19,3 +19,4 @@
         编辑权限        [操作]      /users/access/updateAccess
         获取权限信息    [操作]      /users/access/findOne
         删除权限        [操作]      /users/access/deleteAccess
+        获取全部权限    [操作]      /users/access/find
