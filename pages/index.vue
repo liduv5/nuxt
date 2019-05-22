@@ -5,7 +5,7 @@
         <div class="top-title">
           <h1 class="title">Nuxt-管理系统</h1>
         </div>
-        <Menu :menuList="menu" :userInfo="userInfo"></Menu>
+        <Menu :userinfo='userInfo'></Menu>
       </el-aside>
 
       <el-container>
@@ -21,16 +21,7 @@
         </el-header>
 
         <el-main>
-          <el-breadcrumb separator="/" style="margin: 10px auto;">
-            <el-breadcrumb-item :to="{ path: '/' }">
-              <i class="el-icon-s-home"></i>
-            </el-breadcrumb-item>
-            <el-breadcrumb-item
-              v-for="(item, index) in breadcrumbList"
-              :key="index"
-              :to="{path:item.path}"
-            >{{item.title}}</el-breadcrumb-item>
-          </el-breadcrumb>
+          <Breadcrumb></Breadcrumb>
           <!-- 子路由出口 -->
           <nuxt-child/>
         </el-main>
@@ -42,90 +33,16 @@
 <script>
 import { mapState } from 'vuex'
 import Menu from '~/components/Menu.vue'
+import Breadcrumb from '~/components/Breadcrumb.vue'
 const Cookie = process.client ? require('js-cookie') : undefined
 
 export default {
   middleware: 'authenticated',
-  components: {
-    Menu
-  },
-  data: () => ({
-    menu: [],
-    menu1: [
-      { name: '', title: '系统首页', path: '/' },
-      { name: 'users', title: '用户管理', path: '/users' },
-      { name: 'addUser', title: '添加用户', path: '/users/addUser' },
-      { name: 'updateUser', title: '编辑用户信息', path: '/users/updateUser' },
-      { name: 'roles', title: '角色管理', path: '/users/roles' },
-      { name: 'auth', title: '角色授权', path: '/users/roles/auth' },
-      { name: 'addRole', title: '添加角色', path: '/users/roles/addRole' },
-      {
-        name: 'updateRole',
-        title: '编辑角色信息',
-        path: '/users/roles/updateRole'
-      },
-      { name: 'access', title: '权限配置', path: '/users/access' },
-      { name: 'addAccess', title: '添加权限', path: '/users/access/addAccess' },
-      {
-        name: 'updateAccess',
-        title: '编辑权限信息',
-        path: '/users/access/updateAccess'
-      },
-      {
-        name: 'article',
-        title: '文章管理',
-        path: '/article'
-      },
-      {
-        name: 'list',
-        title: '菜单',
-        path: '/article/list'
-      },
-      {
-        name: 'links',
-        title: '友情链接',
-        path: '/links'
-      }
-    ]
-  }),
+  components: { Menu, Breadcrumb },
   computed: {
     ...mapState({ userInfo: state => state.userInfo })
   },
-  watch: {
-    $route(to, from) {
-      let arr = ['']
-      if (to.path === '/') {
-        arr = ['']
-      } else {
-        arr = to.path.split('/').filter(item => item)
-        // console.log(arr.pop())
-      }
-      this.breadcrumbList = []
-      arr.forEach((value, index, array) => {
-        // console.log(`value:${value}    index:${index}     array:${array}`)
-        let newArr = this.menu1.find(element => element.name === value)
-        this.breadcrumbList.push(newArr)
-      })
-    }
-  },
-  created() {
-    this.findmenu()
-    let arr = []
-    if (this.$route.path === '/') {
-      arr = ['']
-    } else {
-      arr = this.$route.path.split('/').filter(item => item)
-    }
-    this.breadcrumbList = []
-    arr.forEach((value, index, array) => {
-      let newArr = this.menu1.find(element => element.name === value)
-      this.breadcrumbList.push(newArr)
-    })
-  },
   methods: {
-    async findmenu() {
-      this.menu = await this.$axios.$get('/api/menu')
-    },
     logout() {
       // 使外部API上的JWT Cookie无效
       Cookie.remove('auth')

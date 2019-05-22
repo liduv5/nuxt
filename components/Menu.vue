@@ -20,7 +20,7 @@
         <i class="el-icon-s-home"></i> 系统首页
       </el-menu-item>
 
-      <el-submenu v-for="(item, index) in even(menuList, 1)" :key="index" :index="index">
+      <el-submenu v-for="(item, index) in even(menu, 1)" :key="index" :index="'index'+1">
         <template slot="title">
           <i :class="item.ico"></i>
           {{item.action_name}}
@@ -39,13 +39,27 @@
 </template>
 <script>
 export default {
-  props: ['menuList', 'userInfo'],
+  props: {
+    userinfo: {
+      type: Object,
+      required: true
+    }
+  },
+  data: () => ({
+    menu: []
+  }),
+  created() {
+    this.findmenu()
+  },
   methods: {
+    async findmenu() {
+      this.menu = await this.$axios.$get('/api/menu')
+    },
     even: function(list, num) {
       return list.filter(
         item =>
           (item.checked && item.type === num) ||
-          (this.userInfo.is_super === 1 && item.type === num)
+          (this.userinfo.is_super === 1 && item.type === num)
       )
     }
   }
