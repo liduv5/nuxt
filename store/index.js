@@ -1,8 +1,7 @@
 const cookieparser = process.server ? require('cookieparser') : undefined
 export const state = () => ({
   auth: null,
-  userInfo: {},
-  accessList: []
+  userInfo: {}
 })
 
 export const mutations = {
@@ -11,9 +10,6 @@ export const mutations = {
   },
   saveUserInfo(state, data) {
     state.userInfo = data
-  },
-  SET_ACCESSLIST(state, data) {
-    state.accessList = data
   }
 }
 
@@ -32,10 +28,5 @@ export const actions = {
     }
     commit('setAuth', auth)
     commit('saveUserInfo', userInfo)
-  },
-  // 面包屑数据
-  async GET_ACCESSLIST({ commit }) {
-    let data = await this.$axios.$get('/api/users/access/find')
-    commit('SET_ACCESSLIST', data)
   }
 }

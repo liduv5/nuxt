@@ -22,18 +22,19 @@ export default {
       let arr = ['']
       if (to.path === '/') {
         arr = ['']
+        this.breadcrumbList = [{ action_name: '系统首页', url: '/' }]
       } else {
         arr = to.path.split('/').filter(item => item)
         // console.log(arr.pop())
+        this.breadcrumbList = []
+        arr.forEach((value, index, array) => {
+          // console.log(`value:${value}    index:${index}     array:${array}`)
+          let newArr = this.accessList.find(
+            element => element.url.split('/').pop() === value
+          )
+          this.breadcrumbList.push(newArr)
+        })
       }
-      this.breadcrumbList = []
-      arr.forEach((value, index, array) => {
-        // console.log(`value:${value}    index:${index}     array:${array}`)
-        let newArr = this.$store.state.accessList.find(
-          element => element.url.split('/').pop() === value
-        )
-        this.breadcrumbList.push(newArr)
-      })
     }
   },
   async created() {
@@ -41,20 +42,22 @@ export default {
     let arr = ['']
     if (this.$route.path === '/') {
       arr = ['']
+      this.breadcrumbList = [{ action_name: '系统首页', url: '/' }]
     } else {
       arr = this.$route.path.split('/').filter(item => item)
+      this.breadcrumbList = []
+      arr.forEach((value, index, array) => {
+        let newArr = this.accessList.find(
+          element => element.url.split('/').pop() === value
+        )
+        this.breadcrumbList.push(newArr)
+      })
     }
-    this.breadcrumbList = []
-    arr.forEach((value, index, array) => {
-      let newArr = this.$store.state.accessList.find(
-        element => element.url.split('/').pop() === value
-      )
-      this.breadcrumbList.push(newArr)
-    })
   },
   methods: {
     async accessList() {
-      await this.$store.dispatch('GET_ACCESSLIST')
+      let data = await this.$axios.$get('/api/users/access/find')
+      this.accessList = data
     }
   }
 }
