@@ -10,7 +10,7 @@
       <!-- <el-table-column prop="module_id" label="模块ID" align="center" min-width="150"></el-table-column> -->
       <el-table-column prop="sort" label="排序" align="center" min-width="50"></el-table-column>
       <el-table-column prop="description" label="描述" align="center" min-width="120"></el-table-column>
-      <el-table-column prop="status" label="状态" align="center" min-width="40"></el-table-column>
+      <el-table-column prop="status" label="状态" align="center" min-width="50"></el-table-column>
       <el-table-column label="操作" align="center" min-width="130">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -23,38 +23,7 @@
 <script>
 export default {
   data: () => ({
-    accessList: [
-      {
-        module_name: '用户管理',
-        action_name: '',
-        type: 1,
-        url: '',
-        module_id: 0,
-        sort: 100,
-        description: '用户管理--模块',
-        status: 1
-      },
-      {
-        module_name: '文章管理',
-        action_name: '',
-        type: 1,
-        url: '',
-        module_id: 0,
-        sort: 100,
-        description: '文章管理--模块',
-        status: 1
-      },
-      {
-        module_name: '分类管理',
-        action_name: '',
-        type: 1,
-        url: '',
-        module_id: 0,
-        sort: 100,
-        description: '分类管理--模块',
-        status: 1
-      }
-    ]
+    accessList: []
   }),
   async asyncData({ $axios }) {
     let accessList = await $axios.$get('/api/users/access')
