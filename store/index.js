@@ -1,7 +1,8 @@
 const cookieparser = process.server ? require('cookieparser') : undefined
 export const state = () => ({
     auth: null,
-    userInfo:{}
+    userInfo:{},
+    accessList:[]
 })
 
 export const mutations = {
@@ -10,11 +11,14 @@ export const mutations = {
       },
     saveUserInfo(state, data){
       state.userInfo = data
+    },
+    SET_ACCESSLIST(state, data){
+      state.accessList = data
     }
 }
 
 export const actions = {
-    nuxtServerInit({ commit }, { req }) {
+   nuxtServerInit({ dispatch, commit }, { req }) {
         let auth = null
         let userInfo = {}
         if (req.headers.cookie) {
@@ -28,5 +32,11 @@ export const actions = {
         }
         commit('setAuth', auth)
         commit('saveUserInfo', userInfo)
+        dispatch('GET_ACCESSLIST')
+      },
+      // 面包屑数据
+      async GET_ACCESSLIST ({ commit }) {
+        let data = await this.$axios.$get('/api/users/access/find')
+        commit('SET_ACCESSLIST', data)
       }
 }

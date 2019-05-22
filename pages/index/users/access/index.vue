@@ -6,12 +6,12 @@
       <el-table-column prop="module_name" label="模块名" align="center" min-width="150"></el-table-column>
       <el-table-column prop="action_name" label="操作名" align="center" min-width="100"></el-table-column>
       <el-table-column prop="type" label="类型" :formatter="formatType" align="center" min-width="50"></el-table-column>
-      <el-table-column prop="url" label="操作路径" align="center" min-width="120"></el-table-column>
-      <el-table-column prop="module_id" label="模块ID" align="center" min-width="150"></el-table-column>
-      <el-table-column prop="sort" label="排序" align="center" min-width="80"></el-table-column>
+      <el-table-column prop="url" label="操作路径" align="center" min-width="180"></el-table-column>
+      <!-- <el-table-column prop="module_id" label="模块ID" align="center" min-width="150"></el-table-column> -->
+      <el-table-column prop="sort" label="排序" align="center" min-width="50"></el-table-column>
       <el-table-column prop="description" label="描述" align="center" min-width="120"></el-table-column>
-      <el-table-column prop="status" label="状态" align="center" min-width="50"></el-table-column>
-      <el-table-column label="操作" align="center" min-width="200">
+      <el-table-column prop="status" label="状态" align="center" min-width="40"></el-table-column>
+      <el-table-column label="操作" align="center" min-width="130">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>

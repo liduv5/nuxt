@@ -7,50 +7,14 @@
       <el-breadcrumb-item
         v-for="(item, index) in breadcrumbList"
         :key="index"
-        :to="{path:item.path}"
-      >{{item.title}}</el-breadcrumb-item>
+        :to="{path:item.url}"
+      >{{item.action_name}}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 <script>
 export default {
   data: () => ({
-    menu1: [
-      { name: '', title: '系统首页', path: '/' },
-      { name: 'users', title: '用户管理', path: '/users' },
-      { name: 'addUser', title: '添加用户', path: '/users/addUser' },
-      { name: 'updateUser', title: '编辑用户信息', path: '/users/updateUser' },
-      { name: 'roles', title: '角色管理', path: '/users/roles' },
-      { name: 'auth', title: '角色授权', path: '/users/roles/auth' },
-      { name: 'addRole', title: '添加角色', path: '/users/roles/addRole' },
-      {
-        name: 'updateRole',
-        title: '编辑角色信息',
-        path: '/users/roles/updateRole'
-      },
-      { name: 'access', title: '权限配置', path: '/users/access' },
-      { name: 'addAccess', title: '添加权限', path: '/users/access/addAccess' },
-      {
-        name: 'updateAccess',
-        title: '编辑权限信息',
-        path: '/users/access/updateAccess'
-      },
-      {
-        name: 'article',
-        title: '文章管理',
-        path: '/article'
-      },
-      {
-        name: 'list',
-        title: '菜单',
-        path: '/article/list'
-      },
-      {
-        name: 'links',
-        title: '友情链接',
-        path: '/links'
-      }
-    ],
     breadcrumbList: []
   }),
   watch: {
@@ -65,8 +29,8 @@ export default {
       this.breadcrumbList = []
       arr.forEach((value, index, array) => {
         // console.log(`value:${value}    index:${index}     array:${array}`)
-        let newArr = this.menu1.find(element => element.name === value)
-        this.breadcrumbList.push(newArr)
+        let newArr = this.$store.state.accessList.find(element => element.url.split('/').pop() === value)
+      this.breadcrumbList.push(newArr)
       })
     }
   },
@@ -79,7 +43,7 @@ export default {
     }
     this.breadcrumbList = []
     arr.forEach((value, index, array) => {
-      let newArr = this.menu1.find(element => element.name === value)
+      let newArr = this.$store.state.accessList.find(element => element.url.split('/').pop() === value )
       this.breadcrumbList.push(newArr)
     })
   }
