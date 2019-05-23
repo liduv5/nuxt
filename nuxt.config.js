@@ -28,7 +28,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '@/plugins/element-ui', ssr: false }],
+  plugins: [{ src: '@/plugins/element-ui', ssr: false },'@/plugins/axios'],
 
   /*
    ** Nuxt.js modules
