@@ -58,12 +58,6 @@ export default {
             .$post('/api/login', this.loginForm)
             .then(response => {
               if (response) {
-                const auth = {
-                  accessToken: 'someStringGotFromApiServiceWithAjax'
-                }
-                this.$store.commit('setAuth', auth) // 存储在vuex中用来进行客户端渲染
-                Cookie.set('auth', auth) // 在cookie中保存token用来进行服务器端渲染
-
                 this.$store.commit('saveUserInfo', response) // 存储在vuex中用来进行客户端渲染
                 Cookie.set('userInfo', response) // 在cookie中保存userinfo用来进行服务器端渲染
 
