@@ -53,7 +53,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$axios.$post('/api/users/roles', this.ruleForm).then(res => {
+          this.$axios.$post('/api/users/roles/addRole', this.ruleForm).then(res => {
             if (res.success) {
                 this.$message({
                   message: '角色添加成功！',

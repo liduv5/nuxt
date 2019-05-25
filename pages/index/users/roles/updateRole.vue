@@ -66,7 +66,7 @@ export default {
               id: this.$route.query._id,
               data: this.ruleForm
             }
-            this.$axios.$put('/api/users/roles', req).then(res => {
+            this.$axios.$put('/api/users/roles/updateRole', req).then(res => {
               if (res.ok) {
                 this.$message({
                   message: '角色信息更新成功！',
