@@ -5,11 +5,11 @@
         <div class="top-title">
           <h1 class="title">Nuxt-管理系统</h1>
         </div>
-        <Menu :userinfo="userInfo"></Menu>
+        <Menu v-if="userInfo" :userinfo="userInfo"></Menu>
       </el-aside>
 
       <el-container>
-        <el-header style="text-align: right; font-size: 12px">
+        <el-header v-if="userInfo" style="text-align: right; font-size: 12px">
           <el-dropdown>
             <i class="el-icon-setting" style="margin-right: 15px"></i>
             <el-dropdown-menu slot="dropdown">
@@ -46,7 +46,7 @@ export default {
     logout() {
       // 使外部API上的JWT Cookie无效
       Cookie.remove('userInfo')
-      this.$store.commit('saveUserInfo', {})
+      this.$store.commit('saveUserInfo', null)
       this.$router.push('/login')
       this.$axios.$post('/api/logout', { nuxtLogout: true })
     }
