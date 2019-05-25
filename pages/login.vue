@@ -123,7 +123,6 @@ body,
 }
 .login-ruleForm {
   width: 400px;
-  border: 1px solid #ccc;
   border-radius: 8px;
   padding: 0 45px 10px 10px;
   background-color: #fff;
