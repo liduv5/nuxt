@@ -5,7 +5,7 @@
         <div class="top-title">
           <h1 class="title">Nuxt-管理系统</h1>
         </div>
-        <Menu :userinfo='userInfo'></Menu>
+        <Menu :userinfo="userInfo"></Menu>
       </el-aside>
 
       <el-container>
@@ -77,6 +77,9 @@ body,
   background-color: #66cccc;
   color: #333;
   line-height: 60px;
+  -moz-box-shadow: 0px 2px 5px #333333;
+  -webkit-box-shadow: 0px 2px 5px #333333;
+  box-shadow: 0px 2px 5px #333333;
 }
 .el-aside {
   background-color: #545c64 !important;
@@ -87,7 +90,7 @@ body,
 }
 .top-title {
   text-align: center;
-  padding: 15px 0;
+  line-height: 60px;
   background-color: #000;
 }
 .top-title .title {
