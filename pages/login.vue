@@ -127,6 +127,9 @@ body,
   border-radius: 8px;
   padding: 0 45px 10px 10px;
   background-color: #fff;
+  -moz-box-shadow: 0px 2px 10px #333333;
+  -webkit-box-shadow: 0px 2px 10px #333333;
+  box-shadow: 0px 2px 10px #333333;
 }
 .login-ruleForm .title {
   font-size: 22px;
