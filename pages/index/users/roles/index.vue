@@ -49,17 +49,21 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          this.$axios.$delete(`/api/users/roles/deleteRole/${row._id}`).then(res => {
-            if (res.ok) {
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              })
-              this.$router.go(0)
-            } else {
-              this.$message.error('角色删除失败！')
-            }
-          })
+          this.$axios
+            .$delete(`/api/users/roles/deleteRole/${row._id}`)
+            .then(res => {
+              if (res.ok) {
+                this.$message({
+                  type: 'success',
+                  message: '删除成功!'
+                })
+                this.$axios.$get('/api/users/roles').then(res => {
+                  this.roleList = res
+                })
+              } else {
+                this.$message.error('角色删除失败！')
+              }
+            })
         })
         .catch(() => {
           this.$message({

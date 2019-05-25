@@ -56,7 +56,9 @@ export default {
                 type: 'success',
                 message: '删除成功!'
               })
-              this.$router.go(0)
+              this.$axios.$get('/api/users/access').then(res => {
+                  this.accessList = res
+                })
             } else {
               this.$message.error('权限删除失败！')
             }

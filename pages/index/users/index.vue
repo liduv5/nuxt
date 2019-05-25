@@ -54,7 +54,9 @@ export default {
                 type: 'success',
                 message: '删除成功!'
               })
-              this.$router.go(0)
+              this.$axios.$get('/api/users').then(res => {
+                  this.userList = res
+                })
             } else {
               this.$message.error('用户删除失败！')
             }
