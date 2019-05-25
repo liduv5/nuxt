@@ -45,8 +45,6 @@ export default {
   methods: {
     logout() {
       // 使外部API上的JWT Cookie无效
-      Cookie.remove('auth')
-      this.$store.commit('setAuth', null)
       Cookie.remove('userInfo')
       this.$store.commit('saveUserInfo', {})
       this.$router.push('/login')
