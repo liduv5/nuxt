@@ -11,13 +11,14 @@
       <el-container>
         <el-header v-if="userInfo" style="text-align: right; font-size: 12px">
           <el-dropdown>
-            <i class="el-icon-setting" style="margin-right: 15px"></i>
+            <span class="el-dropdown-link">
+              {{userInfo.realname}}<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>个人资料</el-dropdown-item>
               <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>{{userInfo.realname}}</span>
         </el-header>
 
         <el-main>
@@ -99,4 +100,12 @@ body,
   font-weight: bold;
   font-size: 22px;
 }
+.el-dropdown-link {
+    cursor: pointer;
+    color: rgb(94, 7, 21);
+    font-weight: bold;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
 </style>
