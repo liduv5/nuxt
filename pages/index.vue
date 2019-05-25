@@ -74,6 +74,7 @@ body,
   height: 100% !important;
 }
 .el-header {
+  z-index: 999;
   background-color: #66cccc;
   color: #333;
   line-height: 60px;

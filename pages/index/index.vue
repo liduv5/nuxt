@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="users-index">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>Nuxt-系统信息</span>
