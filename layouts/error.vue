@@ -1,6 +1,6 @@
 <template>
   <div class="error">
-    <div class="div404" v-if="error.statusCode === 404">
+    <div v-if="error.statusCode === 404" class="div404">
       <section class="error-container">
         <span>4</span>
         <span>
