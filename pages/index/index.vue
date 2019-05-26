@@ -17,7 +17,7 @@ export default {
   data: () => ({})
 }
 </script>
-<style>
+<style scoped>
 .text {
   font-size: 14px;
 }

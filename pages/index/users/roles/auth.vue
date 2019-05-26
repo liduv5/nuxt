@@ -82,7 +82,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .auth .box-card {
   width: 520px;
   margin: 0 auto;

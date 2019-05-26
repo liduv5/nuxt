@@ -12,7 +12,8 @@
         <el-header v-if="userInfo" style="text-align: right; font-size: 12px">
           <el-dropdown>
             <span class="el-dropdown-link">
-              {{userInfo.realname}}<i class="el-icon-arrow-down el-icon--right"></i>
+              {{userInfo.realname}}
+              <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>个人资料</el-dropdown-item>
@@ -56,17 +57,6 @@ export default {
 </script>
 
 <style>
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #e9e9e9;
-}
-html,
-body,
-#__nuxt,
-#__layout,
-#app,
 .index {
   height: 100%;
   overflow: hidden;
@@ -101,11 +91,11 @@ body,
   font-size: 22px;
 }
 .el-dropdown-link {
-    cursor: pointer;
-    color: rgb(94, 7, 21);
-    font-weight: bold;
-  }
-  .el-icon-arrow-down {
-    font-size: 12px;
-  }
+  cursor: pointer;
+  color: rgb(94, 7, 21);
+  font-weight: bold;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
 </style>
