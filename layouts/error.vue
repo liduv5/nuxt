@@ -24,6 +24,11 @@
 /* eslint-disable */
 export default {
   props: ['error'],
+  created(){
+    if (this.error.statusCode === 401) {
+      this.$router.push('/error?401')
+    }
+  },
   methods: {
     goHome() {
       this.$router.push('/')
