@@ -2,7 +2,9 @@
   <div class="error">
     <h1>远方...</h1>
     <h3>一个无法到达的地方！</h3>
-    <nuxt-link to="/"><p>权限不足，返回首页</p></nuxt-link>
+    <nuxt-link to="/">
+      <p>权限不足，返回首页</p>
+    </nuxt-link>
   </div>
 </template>
 <style scoped>
@@ -12,24 +14,26 @@
   overflow: hidden;
   text-align: center;
 }
-h1{
-    color: #ffb485;
-    font-size: 55px;
-    margin-top: 200px;display: inline-block;
+h1 {
+  color: #ffb485;
+  font-size: 55px;
+  margin-top: 200px;
+  display: inline-block;
 }
 .error > h1:nth-of-type(1) {
   color: #d1f2a5;
   animation: colordancing 4s infinite;
 }
-h3{
-    display: inline-block;
+h3 {
+  color: rgb(52, 52, 52);
+  display: inline-block;
 }
-a{
-    
-    text-decoration:none;
+a {
+  text-decoration: none;
 }
-p{margin-top: 50px;
-    color: rgba(50, 146, 175, 0.89);
+p {
+  margin-top: 50px;
+  color: rgba(50, 146, 175, 0.89);
 }
 .error > h1:nth-of-type(3) {
   color: #f56991;

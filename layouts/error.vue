@@ -16,7 +16,7 @@
         <el-button type="success" size="mini" round @click="goHome">返回首页</el-button>
       </p>
     </div>
-    <h1 v-else>您没有访问权限</h1>
+    <h1 v-else>服务器错误！</h1>
   </div>
 </template>
 
