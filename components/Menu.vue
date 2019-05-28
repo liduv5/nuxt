@@ -11,6 +11,7 @@
     </ul>-->
     <el-menu
       :default-active="$route.path"
+      unique-opened
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
@@ -20,7 +21,7 @@
         <i class="el-icon-s-home"></i> 系统首页
       </el-menu-item>
 
-      <el-submenu v-for="(item, index) in even(menu, 1)" :key="index" :index="'index'+1">
+      <el-submenu v-for="(item, index) in even(menu, 1)" :key="index" :index="index+1+''">
         <template slot="title">
           <i :class="item.ico"></i>
           {{item.action_name}}
