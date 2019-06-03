@@ -1,7 +1,7 @@
 <template>
   <div class="access">
     <el-button type="primary" icon="el-icon-plus" style="margin: 10px auto;" @click="add">添加权限</el-button>
-    <el-table :data="accessList" row-key="_id" stripe border style="width: 100%">
+    <el-table :data="accessList" row-key="_id" default-expand-all stripe border style="width: 100%">
       <!-- <el-table-column prop="_id" label="id编号" align="center" min-width="200"></el-table-column> -->
       <el-table-column prop="module_name" label="模块名" align="center" min-width="150"></el-table-column>
       <el-table-column prop="action_name" label="操作名" align="center" min-width="100"></el-table-column>
