@@ -3,12 +3,18 @@
     <el-button type="primary" icon="el-icon-plus" style="margin: 10px auto;" @click="add">添加轮播图</el-button>
     <el-table :data="focusList" stripe border style="width: 100%">
       <!-- <el-table-column prop="_id" label="id编号" align="center" min-width="220"></el-table-column> -->
-      <el-table-column prop="title" label="名称" align="center" min-width="120"></el-table-column>
-      <el-table-column prop="focus_img" label="图片" align="center" min-width="300"></el-table-column>
-      <el-table-column prop="link" label="链接" align="center" min-width="180"></el-table-column>
-      <el-table-column prop="type" label="类型" align="center" min-width="50"></el-table-column>
-      <el-table-column prop="sort" label="排序" align="center" min-width="50"></el-table-column>
-      <el-table-column prop="status" label="状态" align="center" min-width="50"></el-table-column>
+      <el-table-column prop="title" label="名称" align="center" min-width="150"></el-table-column>
+      <el-table-column label="图片" align="center" min-width="150">
+        <template slot-scope="scope">
+            <div class="demo-image">
+                <el-image style="width: 100px; height: 100px" :src="'/api'+scope.row.focus_img"  fit="contain"></el-image>
+            </div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="link" label="链接" align="center" min-width="230"></el-table-column>
+      <el-table-column prop="type" label="类型" align="center" min-width="100"></el-table-column>
+      <el-table-column prop="sort" label="排序" align="center" min-width="100"></el-table-column>
+      <el-table-column prop="status" label="状态" align="center" min-width="100"></el-table-column>
       <el-table-column label="操作" align="center" min-width="200">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -45,21 +51,19 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          this.$axios
-            .$delete(`/api/focus/deleteFocus/${row._id}`)
-            .then(res => {
-              if (res.ok) {
-                this.$message({
-                  type: 'success',
-                  message: '删除成功!'
-                })
-                this.$axios.$get('/api/users/roles').then(res => {
-                  this.roleList = res
-                })
-              } else {
-                this.$message.error('角色删除失败！')
-              }
-            })
+          this.$axios.$delete(`/api/focus/deleteFocus/${row._id}`).then(res => {
+            if (res.ok) {
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              })
+              this.$axios.$get('/api/users/roles').then(res => {
+                this.roleList = res
+              })
+            } else {
+              this.$message.error('角色删除失败！')
+            }
+          })
         })
         .catch(() => {
           this.$message({
