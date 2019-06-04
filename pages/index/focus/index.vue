@@ -12,9 +12,9 @@
         </template>
       </el-table-column>
       <el-table-column prop="link" label="链接" align="center" min-width="230"></el-table-column>
-      <el-table-column prop="type" label="类型" align="center" min-width="100"></el-table-column>
-      <el-table-column prop="sort" label="排序" align="center" min-width="100"></el-table-column>
-      <el-table-column prop="status" label="状态" align="center" min-width="100"></el-table-column>
+      <el-table-column prop="type" label="类型" align="center" min-width="80"></el-table-column>
+      <el-table-column prop="sort" label="排序" align="center" min-width="80"></el-table-column>
+      <el-table-column prop="status" label="状态" align="center" min-width="80"></el-table-column>
       <el-table-column label="操作" align="center" min-width="200">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -45,7 +45,7 @@ export default {
       })
     },
     handleDelete(index, row) {
-      this.$confirm(`此操作将永久删除角色：[${row.title}], 是否继续?`, '提示', {
+      this.$confirm(`此操作将永久删除轮播图：[${row.title}], 是否继续?`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -57,11 +57,11 @@ export default {
                 type: 'success',
                 message: '删除成功!'
               })
-              this.$axios.$get('/api/users/roles').then(res => {
-                this.roleList = res
+              this.$axios.$get('/api/focus').then(res => {
+                this.focusList = res
               })
             } else {
-              this.$message.error('角色删除失败！')
+              this.$message.error('轮播图删除失败！')
             }
           })
         })
