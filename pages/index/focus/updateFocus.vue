@@ -35,6 +35,7 @@
               :auto-upload="false"
               :http-request="uploadFile"
               :on-exceed="handleExceed"
+              :on-remove="handleRemove"
               :file-list="fileList"
               list-type="picture"
               :multiple="false"
@@ -90,6 +91,9 @@ export default {
     handleExceed(files, fileList) {
       this.$message.warning(`当前限制选择 1 个文件，如需更换请先完成移除操作！`)
     },
+    handleRemove(file, fileList) {
+        this.$axios.$post('/api/focus/deleteImage', { path:this.focusForm.focus_img } )
+      },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
