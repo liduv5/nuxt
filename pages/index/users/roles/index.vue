@@ -5,7 +5,13 @@
       <el-table-column prop="_id" label="id编号" align="center" min-width="220"></el-table-column>
       <el-table-column prop="title" label="名称" align="center" min-width="120"></el-table-column>
       <el-table-column prop="description" label="描述" align="center" min-width="120"></el-table-column>
-      <el-table-column prop="add_time" label="创建时间" align="center" min-width="180"></el-table-column>
+      <el-table-column
+        prop="add_time"
+        label="创建时间"
+        :formatter="dateFormat"
+        align="center"
+        min-width="180"
+      ></el-table-column>
       <el-table-column label="操作" align="center" min-width="200">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleAuth(scope.$index, scope.row)">授权</el-button>
@@ -17,6 +23,7 @@
   </div>
 </template>
 <script>
+const moment = require('moment');
 export default {
   data: () => ({
     roleList: []
@@ -71,6 +78,14 @@ export default {
             message: '已取消删除'
           })
         })
+    },
+    // 时间格式化
+    dateFormat: function(row, column) {
+      let date = row[column.property]
+      if (date === undefined) {
+        return ''
+      }
+      return moment(date).format("YYYY-MM-DD HH:mm:ss");
     }
   }
 }
